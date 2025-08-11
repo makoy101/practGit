@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PractGit - Interactive Demo Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ffd700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn:hover {
+            background: #ffed4e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Interactive Counter */
+        .counter-section {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .counter {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 1rem;
+            color: #ccc;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .counter {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">PractGit</a>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="scrollToSection('hero')">Home</a></li>
+                <li><a href="#features" onclick="scrollToSection('features')">Features</a></li>
+                <li><a href="#about" onclick="scrollToSection('counter-section')">About</a></li>
+                <li><a href="#contact" onclick="scrollToSection('footer')">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <h1>Welcome to PractGit</h1>
+                <p>An interactive demonstration of modern web development practices</p>
+                <button class="btn" onclick="startDemo()">Start Interactive Demo</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2>Amazing Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-card" onclick="animateCard(this)">
+                        <div class="feature-icon">🚀</div>
+                        <h3>Fast Performance</h3>
+                        <p>Optimized for speed and efficiency with modern web technologies.</p>
+                    </div>
+                    <div class="feature-card" onclick="animateCard(this)">
+                        <div class="feature-icon">📱</div>
+                        <h3>Responsive Design</h3>
+                        <p>Perfect viewing experience across all devices and screen sizes.</p>
+                    </div>
+                    <div class="feature-card" onclick="animateCard(this)">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Interactive Elements</h3>
+                        <p>Engaging user interactions with smooth animations and transitions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Counter Section -->
+        <section class="counter-section" id="counter-section">
+            <div class="container">
+                <h2>Interactive Counter</h2>
+                <p>Click the buttons to see the magic happen!</p>
+                <div class="counter" id="counter">0</div>
+                <button class="btn" onclick="incrementCounter()">Increment</button>
+                <button class="btn" onclick="decrementCounter()" style="margin-left: 1rem;">Decrement</button>
+                <button class="btn" onclick="resetCounter()" style="margin-left: 1rem; background: #ff6b6b;">Reset</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PractGit</h3>
+                    <p>A demonstration project for modern web development practices using Git workflow.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#" onclick="scrollToSection('hero')">Home</a>
+                    <a href="#" onclick="scrollToSection('features')">Features</a>
+                    <a href="#" onclick="scrollToSection('counter-section')">Interactive Demo</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="https://github.com/makoy101/practGit" target="_blank">GitHub Repository</a>
+                    <a href="#" onclick="showAlert('Contact feature coming soon!')">Contact Us</a>
+                    <a href="#" onclick="showAlert('Documentation in progress!')">Documentation</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PractGit. Built with ❤️ for learning Git workflows.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive JavaScript functionality
+        let counter = 0;
+
+        function incrementCounter() {
+            counter++;
+            updateCounterDisplay();
+            animateCounter();
+        }
+
+        function decrementCounter() {
+            counter--;
+            updateCounterDisplay();
+            animateCounter();
+        }
+
+        function resetCounter() {
+            counter = 0;
+            updateCounterDisplay();
+            animateCounter();
+        }
+
+        function updateCounterDisplay() {
+            document.getElementById('counter').textContent = counter;
+        }
+
+        function animateCounter() {
+            const counterElement = document.getElementById('counter');
+            counterElement.style.transform = 'scale(1.2)';
+            counterElement.style.color = counter > 0 ? '#4CAF50' : counter < 0 ? '#f44336' : '#ffd700';
+            
+            setTimeout(() => {
+                counterElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function animateCard(card) {
+            card.style.transform = 'translateY(-15px) scale(1.05)';
+            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.2)';
+            
+            setTimeout(() => {
+                card.style.transform = 'translateY(-10px)';
+                card.style.boxShadow = '0 15px 30px rgba(0, 0, 0, 0.1)';
+            }, 200);
+        }
+
+        function startDemo() {
+            showAlert('🎉 Demo started! Try the interactive counter below and click on feature cards!');
+            scrollToSection('features');
+        }
+
+        function showAlert(message) {
+            alert(message);
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.2)';
+                header.style.backdropFilter = 'blur(20px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+
+        // Welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                console.log('🚀 PractGit Interactive Demo loaded successfully!');
+                console.log('Try the interactive features and explore the code!');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
